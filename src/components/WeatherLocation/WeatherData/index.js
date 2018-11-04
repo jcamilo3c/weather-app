@@ -2,20 +2,15 @@ import React from 'react';
 import WeatherTemperature from './WeatherTemperature';
 import WeatherExtraInfo from './WeatherExtraInfo';
 import './styles.css';
-import {
-    CLOUD,
-    CLOUDY,
-    SUN,
-    RAIN,
-    SNOW,
-    WINDY
-} from './../../../constants/weathers';
 
-const WeatherData = () => (
-    <div className="weatherDataCont">
-        <WeatherTemperature temperature={20} weatherState={SUN}></WeatherTemperature>
-        <WeatherExtraInfo humidity={80} wind={"10 m/s"}></WeatherExtraInfo>
-    </div>
-);
+const WeatherData = ({ data }) => {
+    const {temperature:temp, weatherState, humidity, wind} = data;
+    return(
+        <div className="weatherDataCont">
+            <WeatherTemperature temperature={temp} weatherState={weatherState}></WeatherTemperature>
+            <WeatherExtraInfo humidity={humidity} wind={wind}></WeatherExtraInfo>
+        </div>
+    );
+};
 
 export default WeatherData;
