@@ -4,27 +4,29 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import {
     CLOUD,
-    CLOUDY,
     SUN,
     RAIN,
     SNOW,
-    WINDY
+    WINDY,
+    THUNDER,
+    DRIZZLE
 } from './../../../constants/weathers';
 
 const icons = {
     [CLOUD]: 'cloud',
-    [CLOUDY]: 'cloudy',
     [SUN]: 'day-sunny',
     [RAIN]: 'rain',
     [SNOW]: 'snow',
-    [WINDY]: 'windy'
+    [WINDY]: 'windy',
+    [THUNDER]: 'day-thunderstorm',
+    [DRIZZLE]: 'day-showers'
 };
 
 const getWeatherIcon = weatherState => {
     let icon = icons[weatherState];
     const sizeIcon = "4x";
 
-    icon = (icon) ? icon : "day-sunny";
+    icon = (icon) ? icon : "cloudy";
     return <WeatherIcons className="wicon" name={icon} size={sizeIcon}></WeatherIcons>;
 };
 
@@ -39,7 +41,7 @@ const WeatherTemperature = ({ temperature, weatherState }) => (
 );
 
 WeatherTemperature.propTypes = {
-    temperature: PropTypes.string.isRequired,
+    temperature: PropTypes.number.isRequired,
     weatherState: PropTypes.string.isRequired
 };
 
