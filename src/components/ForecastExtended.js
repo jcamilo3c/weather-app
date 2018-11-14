@@ -15,7 +15,31 @@ class ForecastExtended extends Component {
     }
 
     componentDidMount() {
-        const api_forecast = getUrlForecastByCity(this.props.city);
+        this.updateCity(this.props.city);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.city !== this.props.city) {
+            this.setState({
+                forecastData: null
+            });
+            this.updateCity(this.props.city);
+        }
+    }
+
+    /*componentWillReceiveProps(nextProps) {
+        console.log("UNSAFE componentWillReceiveProps");
+        if(nextProps.city !== this.props.city) {
+            this.setState({
+                forecastData: null
+            });
+            this.updateCity(nextProps.city);
+        }
+    }*/
+    
+
+    updateCity = city => {
+        const api_forecast = getUrlForecastByCity(city);
         fetch(api_forecast).then( response => (
             response.json()
         )).then( data => {
@@ -48,6 +72,7 @@ class ForecastExtended extends Component {
         return(
             <div>
                 <h2 className="forecast-title">Pronóstico extendido para {city}</h2>
+                <hr></hr>
                 {forecastData ?
                     this.renderForecastItemDays(forecastData) :
                     this.renderProgress()

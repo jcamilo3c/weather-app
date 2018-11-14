@@ -2,11 +2,17 @@ import React from 'react';
 import WeatherData from './../WeatherLocation/WeatherData';
 import PropTypes from 'prop-types';
 
+const upperCase = day => {
+    const firstLetter = day.substring(0, 1).toUpperCase();
+    const complement = day.substring(1, day.length);
+    return(`${firstLetter}${complement}`);
+}
+
 const ForecastItem = (props) => {
     const {weekDay, hour, data} = props;
     return(
         <div>
-            <div>{weekDay} Hora: {hour}</div>
+            <div><h3>{upperCase(weekDay)} - {hour} hs</h3></div>
             <WeatherData data={data}></WeatherData>
         </div>
     )

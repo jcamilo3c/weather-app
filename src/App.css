@@ -33,7 +33,15 @@
 
 .detail {
   width: 100%;
-  height: 100vh;
-  background: #999;
+  height: 80vh;
+  background: rgba(108, 103, 115, .6);
   overflow: auto;
+  margin: 20px 0;
+  padding: 0 20px 10px 20px;
+}
+
+@media (max-width: 64em) {
+  .detail {
+    max-height: 40vh;
+  }
 }
