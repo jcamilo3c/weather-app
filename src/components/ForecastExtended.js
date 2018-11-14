@@ -4,6 +4,7 @@ import ForecastItem from './ForecastItem';
 import {getUrlForecastByCity} from './../services/getUrlByCity';
 import transformForecast from './../services/transformForecast';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {addSpaceString} from './WeatherLocation/Location';
 import './styles.css';
 
 class ForecastExtended extends Component {
@@ -71,7 +72,7 @@ class ForecastExtended extends Component {
         const {forecastData} = this.state;
         return(
             <div>
-                <h2 className="forecast-title">Pronóstico extendido para {city}</h2>
+                <h2 className="forecast-title">Pronóstico extendido para {addSpaceString(city)}</h2>
                 <hr></hr>
                 {forecastData ?
                     this.renderForecastItemDays(forecastData) :
