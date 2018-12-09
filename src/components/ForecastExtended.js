@@ -38,7 +38,6 @@ class ForecastExtended extends Component {
         }
     }*/
     
-
     updateCity = city => {
         const api_forecast = getUrlForecastByCity(city);
         fetch(api_forecast).then( response => (
@@ -51,16 +50,19 @@ class ForecastExtended extends Component {
         });
     }
     
-
     renderForecastItemDays(forecastData) {
         return(forecastData.map((forecast) =>
-            <ForecastItem
-                key={`${forecast.weekDay}${forecast.hour}`}
-                weekDay={forecast.weekDay} 
-                hour={forecast.hour} 
-                data={forecast.data}>
-            </ForecastItem>
+            <ForecastItem {...this.getPropsForecastItemDays(forecast)}></ForecastItem>
         ));
+    }
+
+    getPropsForecastItemDays(forecast) {
+        return {
+            key: `${forecast.weekDay}${forecast.hour}`,
+            weekDay: forecast.weekDay,
+            hour: forecast.hour,
+            data: forecast.data
+        }
     }
 
     renderProgress() {
